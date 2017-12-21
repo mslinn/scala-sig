@@ -122,11 +122,11 @@
                         <a class="class" href="Audience.html" title=""></a>
                         <a href="Audience.html" title="">Audience</a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="" title=""></a>
+                        <a class="object" href="Issuer$.html" title=""></a>
                         <a class="class" href="Issuer.html" title=""></a>
                         <a href="Issuer.html" title="">Issuer</a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="JWT$.html" title="The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html)."></a>
+                        <a class="object" href="" title="The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html)."></a>
                         <a class="class" href="JWT.html" title=""></a>
                         <a href="JWT.html" title="">JWT</a>
                       </li><li class="current-entities indented3">
@@ -148,15 +148,15 @@
           <div id="content">
             <body class="object value">
       <div id="definition">
-        <a href="Issuer.html" title="See companion class"><div class="big-circle object-companion-class">o</div></a>
+        <a href="JWT.html" title="See companion class"><div class="big-circle object-companion-class">o</div></a>
         <p id="owner"><a href="../../index.html" class="extype" name="com">com</a>.<a href="../index.html" class="extype" name="com.micronautics">micronautics</a>.<a href="index.html" class="extype" name="com.micronautics.sig">sig</a></p>
-        <h1><a href="Issuer.html" title="See companion class">Issuer</a><span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html" title="Permalink">
+        <h1><a href="JWT.html" title="See companion class">JWT</a><span class="permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
         <h3><span class="morelinks"><div>
-            Companion <a href="Issuer.html" title="See companion class">class Issuer</a>
+            Companion <a href="JWT.html" title="See companion class">class JWT</a>
           </div></span></h3>
       </div>
 
@@ -166,12 +166,20 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">Issuer</span><span class="result"> extends <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Serializable.html#scala.Serializable" class="extype" name="scala.Serializable">Serializable</a></span>
+        <span class="name">JWT</span><span class="result"> extends <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Serializable.html#scala.Serializable" class="extype" name="scala.Serializable">Serializable</a></span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/mslinn/scala-sig/tree/master/src/main/scala/com/micronautics/sig/ScalaSig.scala" target="_blank">ScalaSig.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html).</p><p>For the following example, <code>openssl</code> is used to generate the PKCS12 KeyStore:</p><pre>cat mykey.pem mycertificate.pem&gt;mykeycertificate.pem</pre><p>The existing key is in the file <code>mykey.pem</code> in PEM format.
+The certificate is in <code>mycertificate.pem</code>, which is also in PEM format.
+A text file must be created which contains the key followed by the certificate as follows:</p><pre>openssl pkcs12 -export -in mykeycertificate.pem.txt -out mykeystore.pkcs12 -name myAlias -noiter -nomaciter</pre><p>This command prompts the user for a password.
+The password is required.
+The <code>KeyStore</code> fails to work with JSSE without a password.
+This password must also be supplied as the password for the <code>Adapter</code><code>'s </code>KeyStore<code> password.</code></p><p>This command also uses the <code>openssl pkcs12</code> command to generate a PKCS12 <code>KeyStore</code> with the private key and certificate.
+The generated KeyStore is <code>mykeystore.pkcs12</code> with an entry specified by the <code>myAlias</code> alias.
+This entry contains the private key and the certificate provided by the <code>-in</code> argument.
+The <code>noiter</code> and <code>nomaciter</code> options must be specified to allow the generated <code>KeyStore</code> to be recognized properly by JSSE.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/mslinn/scala-sig/tree/master/src/main/scala/com/micronautics/sig/JWT.scala" target="_blank">JWT.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -201,7 +209,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="com.micronautics.sig.Issuer"><span>Issuer</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="com.micronautics.sig.JWT"><span>JWT</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -231,7 +239,7 @@
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -247,7 +255,7 @@
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html###():Int" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -263,7 +271,7 @@
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -276,10 +284,26 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="com.micronautics.sig.JWT#apply" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="apply(issuer:com.micronautics.sig.Issuer,key:String,subject:com.micronautics.sig.Subject,algorithm:io.jsonwebtoken.SignatureAlgorithm,audience:com.micronautics.sig.Audience,claims:io.jsonwebtoken.Claims,compact:Boolean,expiry:java.util.Date,payload:com.nimbusds.jose.Payload):com.micronautics.sig.JWT"></a><a id="apply(Issuer,String,Subject,SignatureAlgorithm,Audience,Claims,Boolean,Date,Payload):JWT"></a>
+      <span class="permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#apply(issuer:com.micronautics.sig.Issuer,key:String,subject:com.micronautics.sig.Subject,algorithm:io.jsonwebtoken.SignatureAlgorithm,audience:com.micronautics.sig.Audience,claims:io.jsonwebtoken.Claims,compact:Boolean,expiry:java.util.Date,payload:com.nimbusds.jose.Payload):com.micronautics.sig.JWT" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">(<span name="issuer">issuer: <a href="Issuer.html" class="extype" name="com.micronautics.sig.Issuer">Issuer</a></span>, <span name="key">key: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="subject">subject: <a href="Subject.html" class="extype" name="com.micronautics.sig.Subject">Subject</a></span>, <span name="algorithm">algorithm: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/SignatureAlgorithm.html#io.jsonwebtoken.SignatureAlgorithm" class="extype" name="io.jsonwebtoken.SignatureAlgorithm">SignatureAlgorithm</a> = <span class="symbol">SignatureAlgorithm.HS512</span></span>, <span name="audience">audience: <a href="Audience.html" class="extype" name="com.micronautics.sig.Audience">Audience</a> = <span class="symbol"><span class="name"><a href="Audience$.html">Audience.empty</a></span></span></span>, <span name="claims">claims: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/Claims.html#io.jsonwebtoken.Claims" class="extype" name="io.jsonwebtoken.Claims">Claims</a> = <span class="symbol">new DefaultClaims()</span></span>, <span name="compact">compact: <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a> = <span class="symbol">false</span></span>, <span name="expiry">expiry: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Date.html#java.util.Date" class="extype" name="java.util.Date">Date</a> = <span class="symbol"><span class="name"><a href="ScalaSig$.html">oneHourFromNow</a></span></span></span>, <span name="payload">payload: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/com/nimbusds/nimbus-jose-jwt/5.2/nimbus-jose-jwt-5.2-javadoc.jar/!/com/nimbusds/jose/Payload.html#com.nimbusds.jose.Payload" class="extype" name="com.nimbusds.jose.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">new Payload(&quot;&quot;)</a></span></span></span>)</span><span class="result">: <a href="JWT.html" class="extype" name="com.micronautics.sig.JWT">JWT</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Factory class for creating JWT instances</p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -295,7 +319,7 @@
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#clone():Object" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -316,10 +340,26 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="com.micronautics.sig.JWT#empty" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="empty:com.micronautics.sig.JWT"></a><a id="empty:JWT"></a>
+      <span class="permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#empty:com.micronautics.sig.JWT" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">empty</span><span class="result">: <a href="JWT.html" class="extype" name="com.micronautics.sig.JWT">JWT</a></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -335,7 +375,7 @@
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -351,7 +391,7 @@
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#finalize():Unit" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -373,7 +413,7 @@
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#getClass():Class[_]" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -392,7 +432,7 @@
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#hashCode():Int" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -411,7 +451,7 @@
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -427,7 +467,7 @@
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -443,7 +483,7 @@
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#notify():Unit" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -462,7 +502,7 @@
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#notifyAll():Unit" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -478,10 +518,10 @@
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="com.micronautics.sig.Issuer#stringToIssuer" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="stringToIssuer(string:String):com.micronautics.sig.Issuer"></a><a id="stringToIssuer(String):Issuer"></a>
+    </li><li name="com.micronautics.sig.JWT#stringToJWT" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="stringToJWT(string:String):com.micronautics.sig.JWT"></a><a id="stringToJWT(String):JWT"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#stringToIssuer(string:String):com.micronautics.sig.Issuer" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#stringToJWT(string:String):com.micronautics.sig.JWT" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -490,17 +530,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">stringToIssuer</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="Issuer.html" class="extype" name="com.micronautics.sig.Issuer">Issuer</a></span>
+        <span class="name">stringToJWT</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="JWT.html" class="extype" name="com.micronautics.sig.JWT">JWT</a></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
-                <span class="name">@inline</span><span class="args">()</span>
-              
-        </dd></dl></div>
+      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -516,7 +553,7 @@
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#toString():String" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -532,7 +569,7 @@
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#wait():Unit" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -554,7 +591,7 @@
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -576,7 +613,7 @@
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/Issuer$.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
