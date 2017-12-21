@@ -4,3 +4,6 @@
 [![GitHub version](https://badge.fury.io/gh/mslinn%2Fscala-sig.svg)](https://badge.fury.io/gh/mslinn%2Fscala-sig)
 
 Projects are built with Scala 2.12, which requires Java 8+.
+
+## Scaladoc
+[Here](http://blog.mslinn.com/scala-sig/latest/api/com/micronautics/sig/index.html).
