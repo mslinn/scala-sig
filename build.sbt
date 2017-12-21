@@ -79,10 +79,11 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "com.nimbusds"      %  "nimbus-jose-jwt" % "5.2"          withSources(),
+  "io.jsonwebtoken" %  "jjwt"            % "0.9.0"        withSources(),
+  "com.nimbusds"    %  "nimbus-jose-jwt" % "5.2"          withSources(),
   //
-  "org.scalatest"     %% "scalatest"       % "3.0.4" % Test withSources(),
-  "junit"             %  "junit"           % "4.12"  % Test
+  "org.scalatest"   %% "scalatest"       % "3.0.4" % Test withSources(),
+  "junit"           %  "junit"           % "4.12"  % Test
 )
 
 logLevel := Level.Warn

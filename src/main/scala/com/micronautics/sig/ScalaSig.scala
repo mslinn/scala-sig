@@ -8,18 +8,20 @@ import com.nimbusds.jose.crypto.{RSASSASigner, RSASSAVerifier}
 import com.nimbusds.jose.{JWSAlgorithm, JWSHeader, JWSSigner, JWSVerifier}
 import com.nimbusds.jwt.{JWTClaimsSet, SignedJWT}
 
-/** Typesafe creation of RSA key pairs and signed JWTs, also verifies JWTs */
 object ScalaSig {
-  // RSA signatures require a public and private RSA key pair, the public key
-  // must be made known to the JWS recipient in order to verify the signatures
-  val keyGenerator: KeyPairGenerator = KeyPairGenerator.getInstance("RSA")
-  keyGenerator.initialize(1024) // todo is this enough bits?
+  def oneHourFromNow: Date = Date.from(LocalDateTime.now.plusHours(1).atZone(ZoneId.systemDefault()).toInstant)
 }
 
+/** Typesafe creation of RSA key pairs and signed JWTs, also verifies JWTs */
 class ScalaSig {
   import ScalaSig._
 
-  def createKeyPair: (RSAPublicKey, RSAPrivateKey) = {
+  // RSA signatures require a public and private RSA key pair, the public key
+  // must be made known to the JWS recipient in order to verify the signatures
+  val keyGenerator: KeyPairGenerator = KeyPairGenerator.getInstance("RSA")
+
+  def createKeyPair(numBits: Int = 2048): (RSAPublicKey, RSAPrivateKey) = {
+    keyGenerator.initialize(numBits)
     val kp: KeyPair = keyGenerator.genKeyPair()
     val publicKey: RSAPublicKey = kp.getPublic.asInstanceOf[RSAPublicKey]
     val privateKey: RSAPrivateKey = kp.getPrivate.asInstanceOf[RSAPrivateKey]
@@ -37,7 +39,7 @@ class ScalaSig {
     val claimsSet: JWTClaimsSet = new JWTClaimsSet.Builder() // Prepare JWT with claims set
         .subject(subject.value)
         .issuer(issuer.value)
-        .expirationTime(Date.from(LocalDateTime.now.plusHours(1).atZone(ZoneId.systemDefault()).toInstant))
+        .expirationTime(oneHourFromNow)
         .build()
 
     val signedJWT: SignedJWT = new SignedJWT(new JWSHeader(JWSAlgorithm.RS256), claimsSet)
@@ -70,29 +72,51 @@ class ScalaSig {
   }
 }
 
+object Audience {
+  @inline implicit def stringToAudience(string: String): Audience = Audience(string)
 
-object SerializedJWT {
-  implicit def stringToSerializedJWT(string: String): SerializedJWT = SerializedJWT(string)
+  lazy val empty: Audience = Audience("")
 }
 
-case class SerializedJWT(value: String) extends AnyVal {
-  override def toString: String = value
-}
+case class Audience(value: String) extends AnyVal {
+  @inline override def toString: String = value
 
-
-object Subject {
-  implicit def stringToSubject(string: String): Subject = Subject(string)
-}
-
-case class Subject(value: String) extends AnyVal {
-  override def toString: String = value
+  @inline def isEmpty: Boolean = value.isEmpty
+  @inline def nonEmpty: Boolean = value.nonEmpty
 }
 
 
 object Issuer {
-  implicit def stringToIssuer(string: String): Issuer = Issuer(string)
+  @inline implicit def stringToIssuer(string: String): Issuer = Issuer(string)
 }
 
 case class Issuer(value: String) extends AnyVal {
-  override def toString: String = value
+  @inline override def toString: String = value
+
+  @inline def isEmpty: Boolean = value.isEmpty
+  @inline def nonEmpty: Boolean = value.nonEmpty
+}
+
+
+object SerializedJWT {
+  @inline implicit def stringToSerializedJWT(string: String): SerializedJWT = SerializedJWT(string)
+}
+
+case class SerializedJWT(value: String) extends AnyVal {
+  @inline override def toString: String = value
+
+  @inline def isEmpty: Boolean = value.isEmpty
+  @inline def nonEmpty: Boolean = value.nonEmpty
+}
+
+
+object Subject {
+  @inline implicit def stringToSubject(string: String): Subject = Subject(string)
+}
+
+case class Subject(value: String) extends AnyVal {
+  @inline override def toString: String = value
+
+  @inline def isEmpty: Boolean = value.isEmpty
+  @inline def nonEmpty: Boolean = value.nonEmpty
 }
