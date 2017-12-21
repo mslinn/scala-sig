@@ -1,12 +1,11 @@
 organization := "com.micronautics"
 
-name := "scala-sig" // TODO provide a short yet descriptive name
+name := "scala-sig"
 
-version := "0.1.0"
+version := "0.1.1"
 
 scalaVersion := "2.12.4"
 
-// If you want to apply a license, such as the Apache 2 license, uncomment the following:
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 scalacOptions ++= Seq( // From https://tpolecat.github.io/2017/04/25/scalac-flags.html

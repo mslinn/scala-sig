@@ -30,7 +30,7 @@ import scala.sys.process.Process
 object JWT {
   import ScalaSig.oneHourFromNow
 
-  implicit def stringToBearerToken(string: String): JWT = JWT(string)
+  implicit def stringToJWT(string: String): JWT = JWT(string)
 
   /** Factory class for creating JWT instances */
   def apply(
@@ -58,15 +58,12 @@ object JWT {
     JWT(result)
   }
 
-  def run(cmd: String*): String = Process(cmd).!!.trim
-
-  def payload(id: String) = s"""{
-      "iat": ${ System.currentTimeMillis },
-      "exp": ${ oneHourFromNow.getTime },
-      "iss": $id
-    }"""
+  lazy val empty: JWT = JWT("")
 }
 
 case class JWT(value: String) extends AnyVal {
-  override def toString: String = value
+  @inline override def toString: String = value
+
+  @inline def isEmpty: Boolean = value.isEmpty
+  @inline def nonEmpty: Boolean = value.nonEmpty
 }
