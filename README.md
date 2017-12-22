@@ -12,7 +12,7 @@ Add this to your project's `build.sbt`:
 
     resolvers += "micronautics/scala on bintray" at "http://dl.bintray.com/micronautics/scala"
 
-    libraryDependencies += "com.micronautics" %% "scala-sig" % "0.1.3"
+    libraryDependencies += "com.micronautics" %% "scala-sig" % "0.1.4"
     
 ## Scaladoc
 [Here](http://blog.mslinn.com/scala-sig/latest/api/com/micronautics/sig/index.html).
