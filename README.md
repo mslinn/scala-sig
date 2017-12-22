@@ -5,6 +5,8 @@
 
 Projects are built with Scala 2.12, which requires Java 8+.
 
+See the unit tests for examples of how to use this library.
+
 ## Installation
 Add this to your project's `build.sbt`:
 
