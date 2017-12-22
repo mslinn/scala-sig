@@ -122,6 +122,10 @@
                         <a class="class" href="Algorithm.html" title=""></a>
                         <a href="Algorithm.html" title="">Algorithm</a>
                       </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AlgorithmEnum.html" title=""></a>
+                        <a href="AlgorithmEnum.html" title="">AlgorithmEnum</a>
+                      </li><li class="current-entities indented3">
                         <a class="object" href="Audience$.html" title=""></a>
                         <a class="class" href="Audience.html" title=""></a>
                         <a href="Audience.html" title="">Audience</a>
@@ -309,7 +313,7 @@
         <span class="name">claimsAreValid</span><span class="params">(<span name="signedJWT">signedJWT: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/com/nimbusds/nimbus-jose-jwt/5.2/nimbus-jose-jwt-5.2-javadoc.jar/!/com/nimbusds/jwt/SignedJWT.html#com.nimbusds.jwt.SignedJWT" class="extype" name="com.nimbusds.jwt.SignedJWT">SignedJWT</a></span>, <span name="subject">subject: <a href="Subject.html" class="extype" name="com.micronautics.sig.Subject">Subject</a></span>, <span name="issuer">issuer: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
       </span>
       
-      <p class="shortcomment cmt">Verify the JWT claims</p>
+      <p class="shortcomment cmt">Verify the Java web token claims</p>
     </li><li name="com.micronautics.sig.ScalaSig#claimsFrom" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="claimsFrom(parser:io.jsonwebtoken.JwtParser,jwsEncodedPayload:String):io.jsonwebtoken.Jws[io.jsonwebtoken.Claims]"></a><a id="claimsFrom(JwtParser,String):Jws[Claims]"></a>
       <span class="permalink">
@@ -325,7 +329,7 @@
         <span class="name">claimsFrom</span><span class="params">(<span name="parser">parser: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/JwtParser.html#io.jsonwebtoken.JwtParser" class="extype" name="io.jsonwebtoken.JwtParser">JwtParser</a></span>, <span name="jwsEncodedPayload">jwsEncodedPayload: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/Jws.html#io.jsonwebtoken.Jws" class="extype" name="io.jsonwebtoken.Jws">Jws</a>[<a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/Claims.html#io.jsonwebtoken.Claims" class="extype" name="io.jsonwebtoken.Claims">Claims</a>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Parse the Java web token claims from <code>jwsEncodedPayload</code> using <code>parser</code>.</p>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
@@ -350,7 +354,7 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="com.micronautics.sig.ScalaSig#createKeyPair" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="com.micronautics.sig.ScalaSig#createKeyPair" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="createKeyPair(numBits:Int,algorithm:com.micronautics.sig.Algorithm):(java.security.interfaces.RSAPublicKey,java.security.interfaces.RSAPrivateKey)"></a><a id="createKeyPair(Int,Algorithm):(RSAPublicKey,RSAPrivateKey)"></a>
       <span class="permalink">
       <a href="../../../com/micronautics/sig/ScalaSig$.html#createKeyPair(numBits:Int,algorithm:com.micronautics.sig.Algorithm):(java.security.interfaces.RSAPublicKey,java.security.interfaces.RSAPrivateKey)" title="Permalink">
@@ -362,14 +366,18 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">createKeyPair</span><span class="params">(<span name="numBits">numBits: <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a> = <span class="symbol">2048</span></span>, <span name="algorithm">algorithm: <a href="Algorithm.html" class="extype" name="com.micronautics.sig.Algorithm">Algorithm</a> = <span class="symbol"><span class="name"><a href="Algorithm$.html">Algorithm(&quot;RSA&quot;)</a></span></span></span>)</span><span class="result">: (<a href="https://docs.oracle.com/javase/8/docs/api/java/security/interfaces/RSAPublicKey.html#java.security.interfaces.RSAPublicKey" class="extype" name="java.security.interfaces.RSAPublicKey">RSAPublicKey</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/security/interfaces/RSAPrivateKey.html#java.security.interfaces.RSAPrivateKey" class="extype" name="java.security.interfaces.RSAPrivateKey">RSAPrivateKey</a>)</span>
+        <span class="name">createKeyPair</span><span class="params">(<span name="numBits">numBits: <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a> = <span class="symbol">2048</span></span>, <span name="algorithm">algorithm: <a href="Algorithm.html" class="extype" name="com.micronautics.sig.Algorithm">Algorithm</a> = <span class="symbol"><span class="name"><a href="Algorithm$.html">AlgorithmEnum.RSA</a></span></span></span>)</span><span class="result">: (<a href="https://docs.oracle.com/javase/8/docs/api/java/security/interfaces/RSAPublicKey.html#java.security.interfaces.RSAPublicKey" class="extype" name="java.security.interfaces.RSAPublicKey">RSAPublicKey</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/security/interfaces/RSAPrivateKey.html#java.security.interfaces.RSAPrivateKey" class="extype" name="java.security.interfaces.RSAPrivateKey">RSAPrivateKey</a>)</span>
       </span>
       
-      
-    </li><li name="com.micronautics.sig.ScalaSig#createSignedJWT" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="createSignedJWT(publicKey:java.security.interfaces.RSAPublicKey,privateKey:java.security.interfaces.RSAPrivateKey,subject:com.micronautics.sig.Subject,issuer:com.micronautics.sig.Issuer):com.nimbusds.jwt.SignedJWT"></a><a id="createSignedJWT(RSAPublicKey,RSAPrivateKey,Subject,Issuer):SignedJWT"></a>
+      <p class="shortcomment cmt">Create a public/private key pair of the desired strength (via <code>numBits</code>) using the given <a href="Algorithm.html" class="extype" name="com.micronautics.sig.Algorithm">Algorithm</a></p><div class="fullcomment"><div class="comment cmt"><p>Create a public/private key pair of the desired strength (via <code>numBits</code>) using the given <a href="Algorithm.html" class="extype" name="com.micronautics.sig.Algorithm">Algorithm</a></p><p>From the <a href="https://docs.oracle.com/javase/8/docs/api/java/security/KeyPairGenerator.html" target="_blank">Java docs</a>:
+Every implementation of the Java platform is required to support the following standard <span class="extype" name="KeyPairGenerator">KeyPairGenerator</span>
+algorithms and (key sizes):</p><p>- <code>DiffieHellman</code> (1024)
+- <code>DSA</code> (1024)
+- <code>RSA</code> (1024, 2048)</p></div></div>
+    </li><li name="com.micronautics.sig.ScalaSig#createSignedJwt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="createSignedJwt(publicKey:java.security.interfaces.RSAPublicKey,privateKey:java.security.interfaces.RSAPrivateKey,subject:com.micronautics.sig.Subject,issuer:com.micronautics.sig.Issuer):com.nimbusds.jwt.SignedJWT"></a><a id="createSignedJwt(RSAPublicKey,RSAPrivateKey,Subject,Issuer):SignedJWT"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/ScalaSig$.html#createSignedJWT(publicKey:java.security.interfaces.RSAPublicKey,privateKey:java.security.interfaces.RSAPrivateKey,subject:com.micronautics.sig.Subject,issuer:com.micronautics.sig.Issuer):com.nimbusds.jwt.SignedJWT" title="Permalink">
+      <a href="../../../com/micronautics/sig/ScalaSig$.html#createSignedJwt(publicKey:java.security.interfaces.RSAPublicKey,privateKey:java.security.interfaces.RSAPrivateKey,subject:com.micronautics.sig.Subject,issuer:com.micronautics.sig.Issuer):com.nimbusds.jwt.SignedJWT" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -378,7 +386,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">createSignedJWT</span><span class="params">(<span name="publicKey">publicKey: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/interfaces/RSAPublicKey.html#java.security.interfaces.RSAPublicKey" class="extype" name="java.security.interfaces.RSAPublicKey">RSAPublicKey</a></span>, <span name="privateKey">privateKey: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/interfaces/RSAPrivateKey.html#java.security.interfaces.RSAPrivateKey" class="extype" name="java.security.interfaces.RSAPrivateKey">RSAPrivateKey</a></span>, <span name="subject">subject: <a href="Subject.html" class="extype" name="com.micronautics.sig.Subject">Subject</a></span>, <span name="issuer">issuer: <a href="Issuer.html" class="extype" name="com.micronautics.sig.Issuer">Issuer</a></span>)</span><span class="result">: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/com/nimbusds/nimbus-jose-jwt/5.2/nimbus-jose-jwt-5.2-javadoc.jar/!/com/nimbusds/jwt/SignedJWT.html#com.nimbusds.jwt.SignedJWT" class="extype" name="com.nimbusds.jwt.SignedJWT">SignedJWT</a></span>
+        <span class="name">createSignedJwt</span><span class="params">(<span name="publicKey">publicKey: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/interfaces/RSAPublicKey.html#java.security.interfaces.RSAPublicKey" class="extype" name="java.security.interfaces.RSAPublicKey">RSAPublicKey</a></span>, <span name="privateKey">privateKey: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/interfaces/RSAPrivateKey.html#java.security.interfaces.RSAPrivateKey" class="extype" name="java.security.interfaces.RSAPrivateKey">RSAPrivateKey</a></span>, <span name="subject">subject: <a href="Subject.html" class="extype" name="com.micronautics.sig.Subject">Subject</a></span>, <span name="issuer">issuer: <a href="Issuer.html" class="extype" name="com.micronautics.sig.Issuer">Issuer</a></span>)</span><span class="result">: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/com/nimbusds/nimbus-jose-jwt/5.2/nimbus-jose-jwt-5.2-javadoc.jar/!/com/nimbusds/jwt/SignedJWT.html#com.nimbusds.jwt.SignedJWT" class="extype" name="com.nimbusds.jwt.SignedJWT">SignedJWT</a></span>
       </span>
       
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">publicKey</dt><dd class="cmt"><p>RSA public key</p></dd><dt class="param">privateKey</dt><dd class="cmt"><p>RSA private key</p></dd><dt class="param">subject</dt><dd class="cmt"><p>&quot;alice&quot;</p></dd><dt class="param">issuer</dt><dd class="cmt"><p>URL in string form</p></dd><dt>returns</dt><dd class="cmt"><p>new Signed JWT</p></dd></dl></div>
@@ -505,11 +513,11 @@
         <span class="name">jwtFrom</span><span class="params">(<span name="parser">parser: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/JwtParser.html#io.jsonwebtoken.JwtParser" class="extype" name="io.jsonwebtoken.JwtParser">JwtParser</a></span>, <span name="jwsEncodedPayload">jwsEncodedPayload: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/Jwt.html#io.jsonwebtoken.Jwt" class="extype" name="io.jsonwebtoken.Jwt">Jwt</a>[_ &lt;: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/Header.html#io.jsonwebtoken.Header" class="extype" name="io.jsonwebtoken.Header">Header</a>[_], _]</span>
       </span>
       
-      
-    </li><li name="com.micronautics.sig.ScalaSig#jwtsParserFrom" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="jwtsParserFrom(key:java.security.PublicKey):io.jsonwebtoken.JwtParser"></a><a id="jwtsParserFrom(PublicKey):JwtParser"></a>
+      <p class="shortcomment cmt">Create a <code>Jwt</code> instance from <code>jwsEncodedPayload</code> using the given <code>JwtParser</code></p>
+    </li><li name="com.micronautics.sig.ScalaSig#jwtParserFrom" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="jwtParserFrom(key:java.security.PublicKey):io.jsonwebtoken.JwtParser"></a><a id="jwtParserFrom(PublicKey):JwtParser"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/ScalaSig$.html#jwtsParserFrom(key:java.security.PublicKey):io.jsonwebtoken.JwtParser" title="Permalink">
+      <a href="../../../com/micronautics/sig/ScalaSig$.html#jwtParserFrom(key:java.security.PublicKey):io.jsonwebtoken.JwtParser" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -518,7 +526,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">jwtsParserFrom</span><span class="params">(<span name="key">key: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/PublicKey.html#java.security.PublicKey" class="extype" name="java.security.PublicKey">PublicKey</a></span>)</span><span class="result">: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/JwtParser.html#io.jsonwebtoken.JwtParser" class="extype" name="io.jsonwebtoken.JwtParser">JwtParser</a></span>
+        <span class="name">jwtParserFrom</span><span class="params">(<span name="key">key: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/PublicKey.html#java.security.PublicKey" class="extype" name="java.security.PublicKey">PublicKey</a></span>)</span><span class="result">: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/JwtParser.html#io.jsonwebtoken.JwtParser" class="extype" name="io.jsonwebtoken.JwtParser">JwtParser</a></span>
       </span>
       
       
@@ -576,7 +584,7 @@
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="com.micronautics.sig.ScalaSig#oneHourFromNow" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="com.micronautics.sig.ScalaSig#oneHourFromNow" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="oneHourFromNow:java.util.Date"></a><a id="oneHourFromNow:Date"></a>
       <span class="permalink">
       <a href="../../../com/micronautics/sig/ScalaSig$.html#oneHourFromNow:java.util.Date" title="Permalink">
@@ -591,7 +599,7 @@
         <span class="name">oneHourFromNow</span><span class="result">: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Date.html#java.util.Date" class="extype" name="java.util.Date">Date</a></span>
       </span>
       
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Java Date one hour in the future</p></dd></dl></div>
     </li><li name="com.micronautics.sig.ScalaSig#serializeJWT" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="serializeJWT(signedJWT:com.nimbusds.jwt.SignedJWT):com.micronautics.sig.SerializedJWT"></a><a id="serializeJWT(SignedJWT):SerializedJWT"></a>
       <span class="permalink">
@@ -627,10 +635,10 @@ maXlS9DhN0nUk_hGI3amEjkKd0BWYCB8vfUbUv0XGjQip78AI4z1PrFRNidm7
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="com.micronautics.sig.ScalaSig#toPublicKey" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="toPublicKey(string:String):java.security.PublicKey"></a><a id="toPublicKey(String):PublicKey"></a>
+    </li><li name="com.micronautics.sig.ScalaSig#toRsaPublicKey" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="toRsaPublicKey(string:String):java.security.PublicKey"></a><a id="toRsaPublicKey(String):PublicKey"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/ScalaSig$.html#toPublicKey(string:String):java.security.PublicKey" title="Permalink">
+      <a href="../../../com/micronautics/sig/ScalaSig$.html#toRsaPublicKey(string:String):java.security.PublicKey" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -639,7 +647,7 @@ maXlS9DhN0nUk_hGI3amEjkKd0BWYCB8vfUbUv0XGjQip78AI4z1PrFRNidm7
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">toPublicKey</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/PublicKey.html#java.security.PublicKey" class="extype" name="java.security.PublicKey">PublicKey</a></span>
+        <span class="name">toRsaPublicKey</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/PublicKey.html#java.security.PublicKey" class="extype" name="java.security.PublicKey">PublicKey</a></span>
       </span>
       
       
