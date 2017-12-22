@@ -10,13 +10,15 @@ class TestyMcTestFace extends WordSpec with MustMatchers {
   "JWT" should {
     "work" in {
       val (publicKey: PublicKey, privateKey: PrivateKey) = ScalaSig.createKeyPair()
+
       val jwt = JWT(
-        issuer = "Joe",
+        issuer = "SantaClaus",
         key = privateKey,
         subject = "This is a test"
       )
 
       assert(jwt.isValidFor(privateKey))
+      jwt.value
     }
   }
 }

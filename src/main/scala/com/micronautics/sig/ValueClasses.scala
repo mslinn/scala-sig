@@ -1,16 +1,13 @@
 package com.micronautics.sig
 
 object Algorithm {
-  @inline implicit def stringToAudience(string: String): Algorithm = Algorithm(string)
+  @inline implicit def stringToAlgorithm(string: String): Algorithm = Algorithm(AlgorithmEnum.valueOf(string))
 
-  lazy val empty: Algorithm = Algorithm("")
+  @inline implicit def algorithmEnumToAlgorithm(algorithmEnum: AlgorithmEnum): Algorithm = Algorithm(algorithmEnum)
 }
 
-case class Algorithm(value: String) extends AnyVal {
-  @inline override def toString: String = value
-
-  @inline def isEmpty: Boolean = value.isEmpty
-  @inline def nonEmpty: Boolean = value.nonEmpty
+case class Algorithm(value: AlgorithmEnum = AlgorithmEnum.RSA) extends AnyVal {
+  @inline override def toString: String = value.name
 }
 
 

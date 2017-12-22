@@ -5,7 +5,7 @@ import java.util.Date
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.nimbusds.jose.Payload
 import io.jsonwebtoken.impl.DefaultClaims
-import io.jsonwebtoken.{Claims, JwtBuilder, Jwts, SignatureAlgorithm}
+import io.jsonwebtoken.{Claims, Header, Jwt, JwtBuilder, JwtParser, Jwts, SignatureAlgorithm}
 
 // TODO probably delete the entire comment following.
 /** The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html).
@@ -28,6 +28,10 @@ import io.jsonwebtoken.{Claims, JwtBuilder, Jwts, SignatureAlgorithm}
   * The `noiter` and `nomaciter` options must be specified to allow the generated `KeyStore` to be recognized properly by JSSE. */
 object JWT {
   import com.micronautics.sig.ScalaSig.oneHourFromNow
+
+  lazy val defaultJwtParser: JwtParser = Jwts.parser
+
+  lazy val empty: JWT = JWT("")
 
   lazy val prettyMapper: ObjectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
 
@@ -63,14 +67,14 @@ object JWT {
     JWT(result)
   }
 
-  lazy val empty: JWT = JWT("")
+  def fromString(string: String): Jwt[_ <: Header[_], _] = defaultJwtParser.parse(string)
 }
 
 case class JWT(value: String) extends AnyVal {
-  @inline override def toString: String = value
+  @inline def asJwt: Jwt[_ <: Header[_], _] = JWT.fromString(value)
 
-  @inline def isEmpty: Boolean = value.isEmpty
-  @inline def nonEmpty: Boolean = value.nonEmpty
+  @inline def isEmpty: Boolean  = value.trim.isEmpty
+  @inline def nonEmpty: Boolean = value.trim.nonEmpty
 
   @inline def isValidFor(key: Key): Boolean =
     try {
@@ -80,4 +84,6 @@ case class JWT(value: String) extends AnyVal {
       case _: Exception =>
         false
     }
+
+  @inline override def toString: String = value
 }
