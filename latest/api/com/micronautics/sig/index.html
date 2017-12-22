@@ -134,7 +134,7 @@
                         <a class="class" href="Issuer.html" title=""></a>
                         <a href="Issuer.html" title="">Issuer</a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="JWT$.html" title="The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html)."></a>
+                        <a class="object" href="JWT$.html" title=""></a>
                         <a class="class" href="JWT.html" title=""></a>
                         <a href="JWT.html" title="">JWT</a>
                       </li><li class="current-entities indented3">
@@ -392,18 +392,10 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a title="The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html)." href="JWT$.html"><span class="name">JWT</span></a><span class="result"> extends <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Serializable.html#scala.Serializable" class="extype" name="scala.Serializable">Serializable</a></span>
+        <a title="" href="JWT$.html"><span class="name">JWT</span></a><span class="result"> extends <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Serializable.html#scala.Serializable" class="extype" name="scala.Serializable">Serializable</a></span>
       </span>
       
-      <p class="shortcomment cmt">The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html).</p><div class="fullcomment"><div class="comment cmt"><p>The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html).</p><p>For the following example, <code>openssl</code> is used to generate the PKCS12 KeyStore:</p><pre>cat mykey.pem mycertificate.pem&gt;mykeycertificate.pem</pre><p>The existing key is in the file <code>mykey.pem</code> in PEM format.
-The certificate is in <code>mycertificate.pem</code>, which is also in PEM format.
-A text file must be created which contains the key followed by the certificate as follows:</p><pre>openssl pkcs12 -export -in mykeycertificate.pem.txt -out mykeystore.pkcs12 -name myAlias -noiter -nomaciter</pre><p>This command prompts the user for a password.
-The password is required.
-The <code>KeyStore</code> fails to work with JSSE without a password.
-This password must also be supplied as the password for the <code>Adapter</code>'s <code>KeyStore</code> password.</p><p>This command also uses the <code>openssl pkcs12</code> command to generate a PKCS12 <code>KeyStore</code> with the private key and certificate.
-The generated KeyStore is <code>mykeystore.pkcs12</code> with an entry specified by the <code>myAlias</code> alias.
-This entry contains the private key and the certificate provided by the <code>-in</code> argument.
-The <code>noiter</code> and <code>nomaciter</code> options must be specified to allow the generated <code>KeyStore</code> to be recognized properly by JSSE.</p></div></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p>See <a href="https://tools.ietf.org/html/rfc7519" target="_blank">RFC7519</a></p></span></dd></dl></div>
     </li><li name="com.micronautics.sig.ScalaSig" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ScalaSig"></a><a id="ScalaSig:ScalaSig"></a>
       <span class="permalink">

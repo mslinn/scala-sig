@@ -134,7 +134,7 @@
                         <a class="class" href="Issuer.html" title=""></a>
                         <a href="Issuer.html" title="">Issuer</a>
                       </li><li class="current-entities indented3">
-                        <a class="object" href="" title="The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html)."></a>
+                        <a class="object" href="" title=""></a>
                         <a class="class" href="JWT.html" title=""></a>
                         <a href="JWT.html" title="">JWT</a>
                       </li><li class="current-entities indented3">
@@ -179,15 +179,7 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html).</p><p>For the following example, <code>openssl</code> is used to generate the PKCS12 KeyStore:</p><pre>cat mykey.pem mycertificate.pem&gt;mykeycertificate.pem</pre><p>The existing key is in the file <code>mykey.pem</code> in PEM format.
-The certificate is in <code>mycertificate.pem</code>, which is also in PEM format.
-A text file must be created which contains the key followed by the certificate as follows:</p><pre>openssl pkcs12 -export -in mykeycertificate.pem.txt -out mykeystore.pkcs12 -name myAlias -noiter -nomaciter</pre><p>This command prompts the user for a password.
-The password is required.
-The <code>KeyStore</code> fails to work with JSSE without a password.
-This password must also be supplied as the password for the <code>Adapter</code>'s <code>KeyStore</code> password.</p><p>This command also uses the <code>openssl pkcs12</code> command to generate a PKCS12 <code>KeyStore</code> with the private key and certificate.
-The generated KeyStore is <code>mykeystore.pkcs12</code> with an entry specified by the <code>myAlias</code> alias.
-This entry contains the private key and the certificate provided by the <code>-in</code> argument.
-The <code>noiter</code> and <code>nomaciter</code> options must be specified to allow the generated <code>KeyStore</code> to be recognized properly by JSSE.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/mslinn/scala-sig/tree/master/src/main/scala/com/micronautics/sig/JWT.scala" target="_blank">JWT.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/mslinn/scala-sig/tree/master/src/main/scala/com/micronautics/sig/JWT.scala" target="_blank">JWT.scala</a></dd><dt>See also</dt><dd><span class="cmt"><p>See <a href="https://tools.ietf.org/html/rfc7519" target="_blank">RFC7519</a></p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -292,10 +284,10 @@ The <code>noiter</code> and <code>nomaciter</code> options must be specified to 
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="com.micronautics.sig.JWT#apply" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="apply(issuer:com.micronautics.sig.Issuer,key:java.security.Key,subject:com.micronautics.sig.Subject,algorithm:io.jsonwebtoken.SignatureAlgorithm,audience:com.micronautics.sig.Audience,claims:io.jsonwebtoken.Claims,compact:Boolean,expiry:java.util.Date,payload:com.nimbusds.jose.Payload):com.micronautics.sig.JWT"></a><a id="apply(Issuer,Key,Subject,SignatureAlgorithm,Audience,Claims,Boolean,Date,Payload):JWT"></a>
+    </li><li name="com.micronautics.sig.JWT#apply" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="apply(key:java.security.PrivateKey,subject:com.micronautics.sig.Subject,algorithm:io.jsonwebtoken.SignatureAlgorithm,audience:com.micronautics.sig.Audience,claims:io.jsonwebtoken.Claims,compact:Boolean,deflate:Boolean,expiry:java.util.Date,issuer:com.micronautics.sig.Issuer,payload:com.nimbusds.jose.Payload):com.micronautics.sig.JWT"></a><a id="apply(PrivateKey,Subject,SignatureAlgorithm,Audience,Claims,Boolean,Boolean,Date,Issuer,Payload):JWT"></a>
       <span class="permalink">
-      <a href="../../../com/micronautics/sig/JWT$.html#apply(issuer:com.micronautics.sig.Issuer,key:java.security.Key,subject:com.micronautics.sig.Subject,algorithm:io.jsonwebtoken.SignatureAlgorithm,audience:com.micronautics.sig.Audience,claims:io.jsonwebtoken.Claims,compact:Boolean,expiry:java.util.Date,payload:com.nimbusds.jose.Payload):com.micronautics.sig.JWT" title="Permalink">
+      <a href="../../../com/micronautics/sig/JWT$.html#apply(key:java.security.PrivateKey,subject:com.micronautics.sig.Subject,algorithm:io.jsonwebtoken.SignatureAlgorithm,audience:com.micronautics.sig.Audience,claims:io.jsonwebtoken.Claims,compact:Boolean,deflate:Boolean,expiry:java.util.Date,issuer:com.micronautics.sig.Issuer,payload:com.nimbusds.jose.Payload):com.micronautics.sig.JWT" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -304,10 +296,13 @@ The <code>noiter</code> and <code>nomaciter</code> options must be specified to 
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">apply</span><span class="params">(<span name="issuer">issuer: <a href="Issuer.html" class="extype" name="com.micronautics.sig.Issuer">Issuer</a></span>, <span name="key">key: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/Key.html#java.security.Key" class="extype" name="java.security.Key">Key</a></span>, <span name="subject">subject: <a href="Subject.html" class="extype" name="com.micronautics.sig.Subject">Subject</a></span>, <span name="algorithm">algorithm: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/SignatureAlgorithm.html#io.jsonwebtoken.SignatureAlgorithm" class="extype" name="io.jsonwebtoken.SignatureAlgorithm">SignatureAlgorithm</a> = <span class="symbol">SignatureAlgorithm.RS256</span></span>, <span name="audience">audience: <a href="Audience.html" class="extype" name="com.micronautics.sig.Audience">Audience</a> = <span class="symbol"><span class="name"><a href="Audience$.html">Audience.empty</a></span></span></span>, <span name="claims">claims: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/Claims.html#io.jsonwebtoken.Claims" class="extype" name="io.jsonwebtoken.Claims">Claims</a> = <span class="symbol">new DefaultClaims</span></span>, <span name="compact">compact: <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a> = <span class="symbol">true</span></span>, <span name="expiry">expiry: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Date.html#java.util.Date" class="extype" name="java.util.Date">Date</a> = <span class="symbol"><span class="name"><a href="../../index.html">oneHourFromNow</a></span></span></span>, <span name="payload">payload: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/com/nimbusds/nimbus-jose-jwt/5.2/nimbus-jose-jwt-5.2-javadoc.jar/!/com/nimbusds/jose/Payload.html#com.nimbusds.jose.Payload" class="extype" name="com.nimbusds.jose.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">new Payload(&quot;&quot;)</a></span></span></span>)</span><span class="result">: <a href="JWT.html" class="extype" name="com.micronautics.sig.JWT">JWT</a></span>
+        <span class="name">apply</span><span class="params">(<span name="key">key: <a href="https://docs.oracle.com/javase/8/docs/api/java/security/PrivateKey.html#java.security.PrivateKey" class="extype" name="java.security.PrivateKey">PrivateKey</a></span>, <span name="subject">subject: <a href="Subject.html" class="extype" name="com.micronautics.sig.Subject">Subject</a></span>, <span name="algorithm">algorithm: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/SignatureAlgorithm.html#io.jsonwebtoken.SignatureAlgorithm" class="extype" name="io.jsonwebtoken.SignatureAlgorithm">SignatureAlgorithm</a> = <span class="symbol">SignatureAlgorithm.RS256</span></span>, <span name="audience">audience: <a href="Audience.html" class="extype" name="com.micronautics.sig.Audience">Audience</a> = <span class="symbol"><span class="name"><a href="Audience$.html">Audience.empty</a></span></span></span>, <span name="claims">claims: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/io/jsonwebtoken/jjwt/0.9.0/jjwt-0.9.0-javadoc.jar/!/io/jsonwebtoken/Claims.html#io.jsonwebtoken.Claims" class="extype" name="io.jsonwebtoken.Claims">Claims</a> = <span class="symbol">new DefaultClaims</span></span>, <span name="compact">compact: <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a> = <span class="symbol">true</span></span>, <span name="deflate">deflate: <a href="http://scala-lang.org/files/archive/api/2.12.4/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a> = <span class="symbol">false</span></span>, <span name="expiry">expiry: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Date.html#java.util.Date" class="extype" name="java.util.Date">Date</a> = <span class="symbol"><span class="name"><a href="../../index.html">oneHourFromNow</a></span></span></span>, <span name="issuer">issuer: <a href="Issuer.html" class="extype" name="com.micronautics.sig.Issuer">Issuer</a> = <span class="symbol"><span class="name"><a href="Issuer$.html">Issuer.empty</a></span></span></span>, <span name="payload">payload: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/com/nimbusds/nimbus-jose-jwt/5.2/nimbus-jose-jwt-5.2-javadoc.jar/!/com/nimbusds/jose/Payload.html#com.nimbusds.jose.Payload" class="extype" name="com.nimbusds.jose.Payload">Payload</a> = <span class="symbol"><span class="name"><a href="../../index.html">new Payload(&quot;&quot;)</a></span></span></span>)</span><span class="result">: <a href="JWT.html" class="extype" name="com.micronautics.sig.JWT">JWT</a></span>
       </span>
       
-      <p class="shortcomment cmt">Factory class for creating JWT instances</p>
+      <p class="shortcomment cmt">Factory class for creating JWT instances</p><div class="fullcomment"><div class="comment cmt"><p>Factory class for creating JWT instances</p></div><dl class="paramcmts block"><dt class="param">key</dt><dd class="cmt"><p>the <span class="extype" name="PrivateKey">PrivateKey</span> to sign the JWT with.</p></dd><dt class="param">subject</dt><dd class="cmt"><p>This claim (<code>sub</code>) is required; identifies the principal that is the subject of the JWT.
+               See https://tools.ietf.org/html/rfc7519#section-4.1.2</p></dd><dt class="param">algorithm</dt><dd class="cmt"><p>Defaults to <code>RSASSA-PKCS-v1_5 using SHA-256</code>.</p></dd><dt class="param">audience</dt><dd class="cmt"><p>The &quot;aud&quot; (audience) claim identifies the recipients that the JWT is intended for.
+                Defaults to not being specified.</p></dd><dt class="param">claims</dt><dd class="cmt"><p>Can specify additional claims with this parameter. Overrides other values which might conflict.</p></dd><dt class="param">compact</dt><dd class="cmt"><p>If true, JSON will have whitespace removed, otherwise the JSON will be pretty-printed.</p></dd><dt class="param">deflate</dt><dd class="cmt"><p>Set true to use a CompressionCodec to compress a large body. The JJWT library will automatically decompress and parse the JWT.</p></dd><dt class="param">expiry</dt><dd class="cmt"><p>This sets the <code>exp</code> (expiration time) claim, which identifies the expiration time on or after which
+              the JWT must not be accepted for processing. Defaults to one hour after the token is created.</p></dd><dt class="param">issuer</dt><dd class="cmt"><p>This specifies the <code>iss</code> (issuer) claim, which identifies the principal that is issuing the JWT.</p></dd><dt class="param">payload</dt><dd class="cmt"><p>Defaults to not being present.</p></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -558,7 +553,7 @@ The <code>noiter</code> and <code>nomaciter</code> options must be specified to 
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="com.micronautics.sig.JWT#prettyMapper" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="com.micronautics.sig.JWT#prettyMapper" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="prettyMapper:com.fasterxml.jackson.databind.ObjectMapper"></a><a id="prettyMapper:ObjectMapper"></a>
       <span class="permalink">
       <a href="../../../com/micronautics/sig/JWT$.html#prettyMapper:com.fasterxml.jackson.databind.ObjectMapper" title="Permalink">
@@ -573,8 +568,8 @@ The <code>noiter</code> and <code>nomaciter</code> options must be specified to 
         <span class="name">prettyMapper</span><span class="result">: <a href="https://oss.sonatype.org/service/local/repositories/public/archive/com/fasterxml/jackson/core/jackson-databind/2.8.9/jackson-databind-2.8.9-javadoc.jar/!/com/fasterxml/jackson/databind/ObjectMapper.html#com.fasterxml.jackson.databind.ObjectMapper" class="extype" name="com.fasterxml.jackson.databind.ObjectMapper">ObjectMapper</a></span>
       </span>
       
-      
-    </li><li name="com.micronautics.sig.JWT#stringToJWT" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="com.micronautics.sig.JWT#stringToJWT" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="stringToJWT(string:String):com.micronautics.sig.JWT"></a><a id="stringToJWT(String):JWT"></a>
       <span class="permalink">
       <a href="../../../com/micronautics/sig/JWT$.html#stringToJWT(string:String):com.micronautics.sig.JWT" title="Permalink">
@@ -589,7 +584,10 @@ The <code>noiter</code> and <code>nomaciter</code> options must be specified to 
         <span class="name">stringToJWT</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="JWT.html" class="extype" name="com.micronautics.sig.JWT">JWT</a></span>
       </span>
       
-      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
