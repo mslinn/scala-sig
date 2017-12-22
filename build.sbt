@@ -2,7 +2,7 @@ organization := "com.micronautics"
 
 name := "scala-sig"
 
-version := "0.1.1"
+version := "0.1.2"
 
 scalaVersion := "2.12.4"
 
@@ -72,9 +72,6 @@ javacOptions ++= Seq(
   "-source", "1.8",
   "-target", "1.8",
   "-g:vars"
-)
-
-resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(

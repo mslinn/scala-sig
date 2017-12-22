@@ -1,26 +1,31 @@
 package com.micronautics.sig
 
 import java.security.interfaces.{RSAPrivateKey, RSAPublicKey}
-import java.security.{KeyPair, KeyPairGenerator}
+import java.security.spec.X509EncodedKeySpec
+import java.security.{KeyFactory, KeyPair, KeyPairGenerator, PublicKey}
 import java.time.{LocalDateTime, ZoneId}
-import java.util.Date
+import java.util.{Base64, Date}
 import com.nimbusds.jose.crypto.{RSASSASigner, RSASSAVerifier}
 import com.nimbusds.jose.{JWSAlgorithm, JWSHeader, JWSSigner, JWSVerifier}
 import com.nimbusds.jwt.{JWTClaimsSet, SignedJWT}
-
-object ScalaSig {
-  def oneHourFromNow: Date = Date.from(LocalDateTime.now.plusHours(1).atZone(ZoneId.systemDefault()).toInstant)
-}
+import io.jsonwebtoken.{Claims, Header, Jws, Jwt, JwtParser, Jwts}
 
 /** Typesafe creation of RSA key pairs and signed JWTs, also verifies JWTs */
-class ScalaSig {
-  import ScalaSig._
+object ScalaSig {
+  def oneHourFromNow: Date = Date.from(LocalDateTime.now.plusHours(1).atZone(ZoneId.systemDefault()).toInstant)
 
-  // RSA signatures require a public and private RSA key pair, the public key
-  // must be made known to the JWS recipient in order to verify the signatures
-  val keyGenerator: KeyPairGenerator = KeyPairGenerator.getInstance("RSA")
+  /** Verify the JWT claims */
+  def claimsAreValid(signedJWT: SignedJWT, subject: Subject, issuer: String): Boolean = {
+    lazy val subjectIsValid = subject.value == signedJWT.getJWTClaimsSet.getSubject
+    lazy val issuerIsValid = issuer == signedJWT.getJWTClaimsSet.getIssuer
+    lazy val dateIsValid = new Date().before(signedJWT.getJWTClaimsSet.getExpirationTime)
+    subjectIsValid && issuerIsValid && dateIsValid
+  }
 
-  def createKeyPair(numBits: Int = 2048): (RSAPublicKey, RSAPrivateKey) = {
+  def claimsFrom(parser: JwtParser, jwsEncodedPayload: String): Jws[Claims] = parser.parseClaimsJws(jwsEncodedPayload)
+
+  def createKeyPair(numBits: Int = 2048, algorithm: Algorithm = Algorithm("RSA")): (RSAPublicKey, RSAPrivateKey) = {
+    val keyGenerator: KeyPairGenerator = KeyPairGenerator.getInstance(algorithm.value)
     keyGenerator.initialize(numBits)
     val kp: KeyPair = keyGenerator.genKeyPair()
     val publicKey: RSAPublicKey = kp.getPublic.asInstanceOf[RSAPublicKey]
@@ -48,6 +53,18 @@ class ScalaSig {
     signedJWT
   }
 
+  def jwtFrom(parser: JwtParser, jwsEncodedPayload: String): Jwt[_ <: Header[_], _] = parser.parse(jwsEncodedPayload)
+
+  def jwtsParserFrom(key: PublicKey): JwtParser = Jwts.parser.setSigningKey(key)
+
+  def toPublicKey(string: String): PublicKey = {
+    val kf: KeyFactory = KeyFactory.getInstance("RSA")
+    val byteKey = Base64.getDecoder.decode(string)
+    val X509publicKey: X509EncodedKeySpec = new X509EncodedKeySpec(byteKey)
+    val result: PublicKey = kf.generatePublic(X509publicKey)
+    result
+  }
+
   /** Serialize to compact form, produces something like:
    * {{{eyJhbGciOiJSUzI1NiJ9.SW4gUlNBIHdlIHRydXN0IQ.IRMQENi4nJyp4er2L
    * mZq3ivwoAjqa1uUkSBKFIX7ATndFF5ivnt-m8uApHO4kfIFOrW7w2Ezmlg3Qd
@@ -62,61 +79,4 @@ class ScalaSig {
     val verifier: JWSVerifier = new RSASSAVerifier(publicKey)
     parsedJWT.verify(verifier)
   }
-
-  /** Verify the JWT claims */
-  def claimsAreValid(signedJWT: SignedJWT, subject: Subject, issuer: String): Boolean = {
-    val subjectIsValid = subject.value == signedJWT.getJWTClaimsSet.getSubject
-    val issuerIsValid = issuer == signedJWT.getJWTClaimsSet.getIssuer
-    val dateIsValid = new Date().before(signedJWT.getJWTClaimsSet.getExpirationTime)
-    subjectIsValid && issuerIsValid && dateIsValid
-  }
-}
-
-object Audience {
-  @inline implicit def stringToAudience(string: String): Audience = Audience(string)
-
-  lazy val empty: Audience = Audience("")
-}
-
-case class Audience(value: String) extends AnyVal {
-  @inline override def toString: String = value
-
-  @inline def isEmpty: Boolean = value.isEmpty
-  @inline def nonEmpty: Boolean = value.nonEmpty
-}
-
-
-object Issuer {
-  @inline implicit def stringToIssuer(string: String): Issuer = Issuer(string)
-}
-
-case class Issuer(value: String) extends AnyVal {
-  @inline override def toString: String = value
-
-  @inline def isEmpty: Boolean = value.isEmpty
-  @inline def nonEmpty: Boolean = value.nonEmpty
-}
-
-
-object SerializedJWT {
-  @inline implicit def stringToSerializedJWT(string: String): SerializedJWT = SerializedJWT(string)
-}
-
-case class SerializedJWT(value: String) extends AnyVal {
-  @inline override def toString: String = value
-
-  @inline def isEmpty: Boolean = value.isEmpty
-  @inline def nonEmpty: Boolean = value.nonEmpty
-}
-
-
-object Subject {
-  @inline implicit def stringToSubject(string: String): Subject = Subject(string)
-}
-
-case class Subject(value: String) extends AnyVal {
-  @inline override def toString: String = value
-
-  @inline def isEmpty: Boolean = value.isEmpty
-  @inline def nonEmpty: Boolean = value.nonEmpty
 }
