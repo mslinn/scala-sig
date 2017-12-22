@@ -27,9 +27,9 @@ class TestyMcTestFace extends WordSpec with MustMatchers {
   "JWT" should {
     "work" in {
       val jwt = JWT(
-        issuer = "SantaClaus",
         key = privateKey,
-        subject = "This is a test"
+        subject = "This is a test",
+        issuer = "SantaClaus"
       )
 
       assert(jwt.isValidFor(privateKey))

@@ -67,6 +67,7 @@ object ScalaSig {
   /** Create a `Jwt` instance from `jwsEncodedPayload` using the given `JwtParser` */
   def jwtFrom(parser: JwtParser, jwsEncodedPayload: String): Jwt[_ <: Header[_], _] = parser.parse(jwsEncodedPayload)
 
+  /** Only [[https://github.com/jwtk/jjwt#currently-unsupported-features compact JSON]] can be parsed */
   def jwtParserFrom(key: PublicKey): JwtParser = JWT.defaultJwtParser.setSigningKey(key)
 
   /** Serialize to compact form, produces something like:

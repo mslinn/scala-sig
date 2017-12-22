@@ -27,6 +27,8 @@ case class Audience(value: String) extends AnyVal {
 
 object Issuer {
   @inline implicit def stringToIssuer(string: String): Issuer = Issuer(string)
+
+  lazy val empty: Issuer = Issuer("")
 }
 
 case class Issuer(value: String) extends AnyVal {

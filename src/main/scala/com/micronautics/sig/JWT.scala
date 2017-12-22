@@ -1,11 +1,11 @@
 package com.micronautics.sig
 
-import java.security.Key
+import java.security.{Key, PrivateKey}
 import java.util.Date
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.nimbusds.jose.Payload
 import io.jsonwebtoken.impl.DefaultClaims
-import io.jsonwebtoken.{Claims, Header, Jwt, JwtBuilder, JwtParser, Jwts, SignatureAlgorithm}
+import io.jsonwebtoken.{Claims, CompressionCodecs, Header, Jwt, JwtBuilder, JwtParser, Jwts, SignatureAlgorithm}
 
 // TODO probably delete the entire comment following.
 /** The following is paraphrased from [Oracle's documentation](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html).
@@ -26,6 +26,8 @@ import io.jsonwebtoken.{Claims, Header, Jwt, JwtBuilder, JwtParser, Jwts, Signat
   * The generated KeyStore is `mykeystore.pkcs12` with an entry specified by the `myAlias` alias.
   * This entry contains the private key and the certificate provided by the `-in` argument.
   * The `noiter` and `nomaciter` options must be specified to allow the generated `KeyStore` to be recognized properly by JSSE. */
+
+/** @see See [[https://tools.ietf.org/html/rfc7519 RFC7519]] */
 object JWT {
   import com.micronautics.sig.ScalaSig.oneHourFromNow
 
@@ -33,35 +35,50 @@ object JWT {
 
   lazy val empty: JWT = JWT("")
 
-  lazy val prettyMapper: ObjectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+  protected lazy val prettyMapper: ObjectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
 
 
-  implicit def stringToJWT(string: String): JWT = JWT(string)
+  @inline implicit def stringToJWT(string: String): JWT = JWT(string)
 
-  /** Factory class for creating JWT instances */
+  /** Factory class for creating JWT instances
+    * @param key the [[PrivateKey]] to sign the JWT with.
+    * @param subject This claim (`sub`) is required; identifies the principal that is the subject of the JWT.
+    *                See https://tools.ietf.org/html/rfc7519#section-4.1.2
+    * @param algorithm Defaults to `RSASSA-PKCS-v1_5 using SHA-256`.
+    * @param audience The "aud" (audience) claim identifies the recipients that the JWT is intended for.
+    *                 Defaults to not being specified.
+    * @param claims Can specify additional claims with this parameter. Overrides other values which might conflict.
+    * @param compact If true, JSON will have whitespace removed, otherwise the JSON will be pretty-printed.
+    * @param deflate Set true to use a CompressionCodec to compress a large body. The JJWT library will automatically decompress and parse the JWT.
+    * @param expiry This sets the `exp` (expiration time) claim, which identifies the expiration time on or after which
+    *               the JWT must not be accepted for processing. Defaults to one hour after the token is created.
+    * @param issuer This specifies the `iss` (issuer) claim, which identifies the principal that is issuing the JWT.
+    * @param payload Defaults to not being present. */
   def apply(
-    issuer: Issuer,
-    key: Key,
+    key: PrivateKey,
     subject: Subject,
     algorithm: SignatureAlgorithm = SignatureAlgorithm.RS256,
     audience: Audience = Audience.empty,
     claims: Claims = new DefaultClaims,
     compact: Boolean = true,
+    deflate: Boolean = false,
     expiry: Date = oneHourFromNow,
+    issuer: Issuer = Issuer.empty,
     payload: Payload = new Payload("")
   ): JWT = {
     val builder = Jwts.builder()
       .setExpiration(expiry)
       .setIssuedAt(new Date)
-      .setIssuer(issuer.value)
       .setClaims(claims)
       .setSubject(subject.value)
 
-    val jb2: JwtBuilder = if (audience.isEmpty) builder else builder.setAudience(audience.value)
-    val jb3: JwtBuilder = if (claims.isEmpty) jb2 else jb2.setClaims(claims)
-    val jb4: JwtBuilder = if (payload.toString.trim.isEmpty) jb3 else jb3.setPayload(payload.toString)
+    val jb1: JwtBuilder = if (issuer.isEmpty) builder else builder.setIssuer(issuer.value)
+    val jb2: JwtBuilder = if (audience.isEmpty) jb1 else jb1.setAudience(audience.value)
+    val jb3: JwtBuilder = if (payload.toString.trim.isEmpty) jb2 else jb2.setPayload(payload.toString)
+    val jb4: JwtBuilder = if (claims.isEmpty) jb3 else jb3.setClaims(claims)
+    val jb5: JwtBuilder = if (deflate) jb4.compressWith(CompressionCodecs.DEFLATE) else jb4
 
-    val signed: JwtBuilder = jb4.signWith(algorithm, key)
+    val signed: JwtBuilder = jb5.signWith(algorithm, key)
 
     val result: String = if (compact) signed.compact else prettyMapper.writeValueAsString(signed)
     JWT(result)
