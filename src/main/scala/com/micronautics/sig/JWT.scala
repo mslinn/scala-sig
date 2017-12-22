@@ -67,11 +67,11 @@ object JWT {
     JWT(result)
   }
 
-  def fromString(string: String): Jwt[_ <: Header[_], _] = defaultJwtParser.parse(string)
+  def fromString(key: Key, string: String): Jwt[_ <: Header[_], _] = defaultJwtParser.setSigningKey(key).parse(string)
 }
 
 case class JWT(value: String) extends AnyVal {
-  @inline def asJwt: Jwt[_ <: Header[_], _] = JWT.fromString(value)
+  @inline def asJwt(key: Key): Jwt[_ <: Header[_], _] = JWT.fromString(key, value)
 
   @inline def isEmpty: Boolean  = value.trim.isEmpty
   @inline def nonEmpty: Boolean = value.trim.nonEmpty

@@ -1,10 +1,13 @@
-import java.math.BigInteger
 import java.security.{PrivateKey, PublicKey}
+import java.util
+import java.util.Map
 import com.micronautics.sig._
+import io.jsonwebtoken.{Claims, Header, Jwt}
 import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-import org.scalatest._
 import org.scalatest.Matchers._
+import org.scalatest._
+import org.scalatest.junit.JUnitRunner
+import scala.collection.JavaConverters._
 
 @RunWith(classOf[JUnitRunner])
 class TestyMcTestFace extends WordSpec with MustMatchers {
@@ -31,7 +34,12 @@ class TestyMcTestFace extends WordSpec with MustMatchers {
       )
 
       assert(jwt.isValidFor(privateKey))
-      jwt.value
+
+      val privateKeyJwt: Jwt[_ <: Header[_], _] = jwt.asJwt(privateKey)
+      val claims: Claims = privateKeyJwt.getBody.asInstanceOf[Claims]
+      val sub: util.Map.Entry[String, AnyRef] = claims.entrySet.asScala.head
+      sub.getKey mustBe "sub"
+      sub.getValue mustBe "This is a test"
     }
   }
 }
