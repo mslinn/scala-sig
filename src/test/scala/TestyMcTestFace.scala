@@ -40,8 +40,8 @@ class TestyMcTestFace extends WordSpec with MustMatchers {
       sub.getKey mustBe "sub"
       sub.getValue mustBe "This is a test"
 
-      val x: String = jwt.toString
-      x.count(_ == ".".head) mustBe 2
+      val jwtString: String = jwt.toString
+      jwtString.count(_ == ".".head) mustBe 2
     }
   }
 }
