@@ -34,11 +34,14 @@ class TestyMcTestFace extends WordSpec with MustMatchers {
 
       assert(jwt.isValidFor(privateKey))
 
-      val privateKeyJwt: Jwt[_ <: Header[_], _] = jwt.asJwt(privateKey)
-      val claims: Claims = privateKeyJwt.getBody.asInstanceOf[Claims]
+      val decodedJwt: Jwt[_ <: Header[_], _] = jwt.asJwt(privateKey)
+      val claims: Claims = decodedJwt.getBody.asInstanceOf[Claims]
       val sub: util.Map.Entry[String, AnyRef] = claims.entrySet.asScala.head
       sub.getKey mustBe "sub"
       sub.getValue mustBe "This is a test"
+
+      val x: String = jwt.toString
+      x.count(_ == ".".head) mustBe 2
     }
   }
 }
