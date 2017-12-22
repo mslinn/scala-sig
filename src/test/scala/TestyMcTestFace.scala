@@ -1,6 +1,5 @@
 import java.security.{PrivateKey, PublicKey}
 import java.util
-import java.util.Map
 import com.micronautics.sig._
 import io.jsonwebtoken.{Claims, Header, Jwt}
 import org.junit.runner.RunWith
